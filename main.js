@@ -39,7 +39,7 @@ function addItem() {
   add.value = ""; // Clear the input field after adding a task
 
   // Create a span for the text
-  var span = document.createElement("span");
+  var span = document.createElement("div");
   span.className = "task-text";
   span.appendChild(txt);
   lis.appendChild(span);
@@ -77,6 +77,9 @@ function editItem(e) {
   var li = e.parentNode.parentNode;
   var currentText = li.querySelector(".task-text").textContent;
 
+  // Change background color when editing
+  li.classList.add("editing");
+
   // Create an input field with the current text as its value
   var inputField = document.createElement("input");
   inputField.type = "text";
@@ -87,7 +90,7 @@ function editItem(e) {
   var saveBut = document.createElement("button");
   saveBut.textContent = "Save";
   saveBut.setAttribute("onclick", "saveItem(this)");
-  saveBut.setAttribute("class", "But editButton");
+  saveBut.setAttribute("class", "But saveButton");
 
   // Create a container for input and button with flex properties
   var editContainer = document.createElement("div");
@@ -136,4 +139,7 @@ function saveItem(e) {
 
   // Append the button div to the li
   li.appendChild(buttonDiv);
+
+  //Remove the class name of editing class so it will bocome to its original position
+  li.classList.remove("editing");
 }
